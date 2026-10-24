@@ -1,0 +1,11 @@
+{
+  "name": "wayfarer",
+  "version": "1.0.0",
+  "description": "An endless low-poly exploration game built with Three.js.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "npx --yes serve -l 5173 ."
+  },
+  "license": "MIT"
+}

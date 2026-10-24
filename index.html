@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wayfarer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js" } }
+  </script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+
+  <div id="hud" hidden>
+    <div class="hud-bar">
+      <div class="stat"><span data-i18n="hud.level"></span><strong data-hud="level"></strong></div>
+      <div class="stat"><span data-i18n="hud.shards"></span><strong data-hud="shards"></strong></div>
+      <div class="stat energy">
+        <span data-i18n="hud.energy"></span>
+        <div class="meter"><div class="meter-fill" data-hud="energy"></div></div>
+      </div>
+    </div>
+    <p class="objective" data-hud="objective"></p>
+    <div class="compass" data-hud="compass">
+      <div class="compass-arrow" data-hud="arrow"></div>
+      <span data-hud="distance"></span>
+    </div>
+    <p class="hint" data-hud="hint" data-i18n="hud.clickToLook"></p>
+    <p class="seed"><span data-i18n="hud.seed"></span> <span data-hud="seed"></span></p>
+    <div class="toasts" data-hud="toasts"></div>
+  </div>
+
+  <section class="screen" data-screen="main" hidden>
+    <div class="panel">
+      <h1 class="title">Wayfarer</h1>
+      <p class="subtitle" data-i18n="menu.subtitle"></p>
+      <div class="actions">
+        <button class="btn primary" data-action="play" data-i18n="menu.play"></button>
+        <button class="btn" data-action="settings" data-i18n="menu.settings"></button>
+      </div>
+      <p class="best" data-best hidden></p>
+      <dl class="controls">
+        <dt><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></dt><dd data-i18n="controls.move"></dd>
+        <dt><kbd>Shift</kbd></dt><dd data-i18n="controls.sprint"></dd>
+        <dt><kbd>Space</kbd></dt><dd data-i18n="controls.jump"></dd>
+        <dt><kbd>Mouse</kbd></dt><dd data-i18n="controls.look"></dd>
+        <dt><kbd>Esc</kbd></dt><dd data-i18n="controls.pause"></dd>
+      </dl>
+      <p class="tip" data-i18n="menu.goal"></p>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="settings" hidden>
+    <div class="panel">
+      <h2 data-i18n="settings.title"></h2>
+      <form class="settings" data-settings>
+        <label class="field">
+          <span data-i18n="settings.language"></span>
+          <select name="language"></select>
+        </label>
+        <label class="field">
+          <span data-i18n="settings.sensitivity"></span>
+          <input type="range" name="sensitivity" min="0.2" max="3" step="0.1">
+          <output data-output="sensitivity"></output>
+        </label>
+        <label class="field">
+          <span data-i18n="settings.viewDistance"></span>
+          <input type="range" name="viewDistance" min="2" max="6" step="1">
+          <output data-output="viewDistance"></output>
+        </label>
+        <label class="field toggle">
+          <span data-i18n="settings.invertY"></span>
+          <input type="checkbox" name="invertY">
+        </label>
+      </form>
+      <div class="actions">
+        <button class="btn primary" data-action="back" data-i18n="settings.back"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="pause" hidden>
+    <div class="panel">
+      <h2 data-i18n="pause.title"></h2>
+      <div class="actions">
+        <button class="btn primary" data-action="resume" data-i18n="pause.resume"></button>
+        <button class="btn" data-action="settings" data-i18n="menu.settings"></button>
+        <button class="btn" data-action="quit" data-i18n="pause.quit"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="screen" data-screen="over" hidden>
+    <div class="panel">
+      <h2 data-i18n="over.title"></h2>
+      <p class="badge" data-over="newBest" data-i18n="over.newBest" hidden></p>
+      <dl class="results">
+        <dt data-i18n="over.level"></dt><dd data-over="level"></dd>
+        <dt data-i18n="over.shards"></dt><dd data-over="shards"></dd>
+        <dt data-i18n="over.distance"></dt><dd data-over="distance"></dd>
+      </dl>
+      <div class="actions">
+        <button class="btn primary" data-action="play" data-i18n="over.retry"></button>
+        <button class="btn" data-action="quit" data-i18n="pause.quit"></button>
+      </div>
+    </div>
+  </section>
+
+  <noscript>Wayfarer needs JavaScript enabled.</noscript>
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
